@@ -11,7 +11,7 @@ pandas
 requests
 # flask_basicauth
 
-### knn model requirements###
+### knn model requirements ###
 numpy
 pandas
 sklearn
