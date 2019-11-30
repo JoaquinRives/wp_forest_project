@@ -1,7 +1,7 @@
 
- ####  Water permeability prediction project  ####
+ #  Water permeability prediction project
 
-=> Packages:
+### Packages:
 
 - wp_knn_model: k nearest neighbor regression model and for prediction of the 
   water permeability level of forest soil. 
@@ -9,7 +9,7 @@
 - ml_api: Flask app for deployment of the wp_knn_model as a REST API.
 
 
-=> Description:
+### Description:
 
 This project is intended to be use in the forest industry to guide routing decisions 
 in harvesting operations.
@@ -32,23 +32,23 @@ Azure Pipelines is used for continuous integration and development of this proje
 Azure DevOps link ("https://dev.azure.com/joaquinrives01/wp_forest_project/_build?definitionId=7").
 
 
-=> Instructions to install and launch:
+### Instructions to install and launch:
 	
 1- Clone or download the repository from "https://github.com/JoaquinRives/wp_forest_project_public"
 
 2- Install the requirements
->>> pip install -r /wp_forest_project_public/requirements.txt
+>pip install -r /wp_forest_project_public/requirements.txt
 
 3- Start up the Flask server app 
->>> python /wp_forest_project_public/packages/ml_api/run.py
+>python /wp_forest_project_public/packages/ml_api/run.py
 
 
 
-# To install only the knn_model package from github:
->>> pip install git+git://github.com/JoaquinRives/wp_knn_model
+To install only the knn_model package from github:
+>pip install git+git://github.com/JoaquinRives/wp_knn_model
 
-# To install only the knn_model package locally:
->>> pip install -e /wp_forest_project_public/packages/wp_knn_model
+To install only the knn_model package locally:
+>pip install -e /wp_forest_project_public/packages/wp_knn_model
 
 
 	
