@@ -2,7 +2,7 @@
 # git+git://github.com/JoaquinRives/wp_knn_model_public
 
 # knn_model package:
-git+git://github.com/JoaquinRives/wp_knn_model
+-e packages/wp_knn_model
 
 ### ml_api ###
 flask
