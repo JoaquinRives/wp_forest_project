@@ -1,0 +1,10 @@
+flask
+numpy
+pandas
+requests
+# flask_basicauth
+feature_engine
+
+
+# water_prediction_model package:  # TODO
+

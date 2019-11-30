@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: knn-model
+Version: 0.0.1
+Summary: k nearest neighbors regression model for prediction of the water permeabilitylevel of forest soil. The model is intended to be use in the forest industry toguide routing decisions in harvesting operations.
+Home-page: https://github.com/JoaquinRives/
+Author: Joaquin Rives
+Author-email: joaquin.rives01@email.com
+License: MIT
+Description: 
+        => Water permeability prediction model
+        
+        - Description:
+        k nearest neighbors regression model for prediction of the water permeability
+        level of forest soil. The model is intended to be use in the forest industry to
+        guide routing decisions in harvesting operations.
+        
+        
+        
+        
+        
+        
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.6.0
+Description-Content-Type: text/markdown

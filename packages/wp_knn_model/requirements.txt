@@ -1,0 +1,12 @@
+numpy
+pandas
+sklearn
+joblib
+feature_engine
+
+# packaging
+setuptools
+wheel
+
+# testing
+pytest

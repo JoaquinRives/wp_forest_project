@@ -1,0 +1,26 @@
+# To install knn_model package from github:
+# git+git://github.com/JoaquinRives/wp_knn_model_public
+
+# knn_model package:
+git+git://github.com/JoaquinRives/wp_knn_model
+
+### ml_api ###
+flask
+numpy
+pandas
+requests
+# flask_basicauth
+
+### knn model requirements###
+numpy
+pandas
+sklearn
+joblib
+feature_engine
+
+# packaging
+setuptools
+wheel
+
+# testing
+pytest

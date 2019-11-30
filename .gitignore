@@ -1,0 +1,13 @@
+*.log
+.idea/workspace.xml
+.idea/
+__pycache__/
+.vscode/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+*knn_classes.py
+*3 - Feature engineer & Feature Selection (unfinished).ipynb
+*4 - Model Building (unfinished).ipynb
+*.pdf
+*draft.py
