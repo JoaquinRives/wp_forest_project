@@ -28,7 +28,8 @@ The predictions are made using the k Nearest Neighbors Algorithm with Euclidean 
 The model will be served as an online API allowing the harvesters to make on-site prediction 
 requests from the harvester’s current geographical position.
 
-Azure Pipelines is used for continuous integration and development of this project.
+Azure Pipelines is used for continuous integration and development of this project. 
+Azure DevOps link ("https://dev.azure.com/joaquinrives01/wp_forest_project/_build?definitionId=7").
 
 
 => Instructions to install and launch:
