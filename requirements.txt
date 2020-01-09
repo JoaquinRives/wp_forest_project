@@ -23,4 +23,4 @@ setuptools
 wheel
 
 # testing
-pytest
+pytest==5.3.2
