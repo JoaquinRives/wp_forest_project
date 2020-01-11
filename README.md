@@ -34,7 +34,7 @@ Azure DevOps link ("https://dev.azure.com/joaquinrives01/wp_forest_project/_buil
 
 ### Instructions to install and launch:
 	
-1- Clone or download the repository from "https://github.com/JoaquinRives/wp_forest_project_public"
+1- Clone or download the repository from "https://github.com/JoaquinRives/wp_forest_project"
 
 2- Install the requirements
 >pip install -r /wp_forest_project_public/requirements.txt
