@@ -5,7 +5,11 @@ import io
 import os
 
 from setuptools import find_packages, setup
+from datetime import datetime
 
+
+now = datetime.now()
+dt_string = now.strftime("%d%m%Y-%H%M%S")
 
 # Package meta-data.
 NAME = 'knn_model'
@@ -38,7 +42,7 @@ except FileNotFoundError:
 # Setup
 setup(
     name=NAME,
-    version='0.0.1',
+    version=dt_string,
     description=DESCRIPTION,
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -47,7 +51,7 @@ setup(
     python_requires=REQUIRES_PYTHON,
     url=URL,
     packages=find_packages(exclude=('tests',)),
-    package_data={'knn_model': ['0.0.1']},
+    package_data={'knn_model': [dt_string]},
     install_requires=None,
     extras_require={},
     include_package_data=True,
