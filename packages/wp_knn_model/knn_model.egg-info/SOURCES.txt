@@ -1,11 +1,9 @@
 README.md
 setup.py
-knn_model/EDA.py
 knn_model/__init__.py
 knn_model/c_index.py
 knn_model/cross_validation.py
 knn_model/data_management.py
-knn_model/draft.py
 knn_model/knn_classes.py
 knn_model/pipeline.py
 knn_model/predict.py
