@@ -1,0 +1,8 @@
+# api
+flask>=1.1.1,<1.2.0
+
+# schema validation
+marshmallow==2.17.0
+
+# Set this to the previous model version
+knn-model==26032020.post215419 --index-url https://pkgs.dev.azure.com/joaquinrives01/wp_forest_project/_packaging/wp_knn_model/pypi/simple/
