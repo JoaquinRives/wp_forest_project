@@ -47,8 +47,8 @@ steps:
   displayName: 'Capture model predictions'
 
 - script:
-    cp -r ./packages/wp_knn_model $(Build.ArtifactStagingDirectory)
-  displayName: 'Copy wp_knn_model package to the ArtifactStagingDirectory'
+    cp -r ./packages/wp_knn_model/dist $(Build.ArtifactStagingDirectory)
+  displayName: 'Copy wp_knn_model dist to the ArtifactStagingDirectory'
 
 - task: PublishBuildArtifacts@1  
   inputs:    
