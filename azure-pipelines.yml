@@ -45,3 +45,13 @@ steps:
 - script: |
     python packages/ml_api/tests/capture_model_predictions.py
   displayName: 'Capture model predictions'
+
+- script:
+    cp -r ./packages/wp_knn_model/dist $(Build.ArtifactStagingDirectory)
+  displayName: 'Copy dist to the ArtifactStagingDirectory'
+
+- task: PublishBuildArtifacts@1  
+  inputs:    
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'                  
+    ArtifactName: 'dist'    
+    publishLocation: 'Container'
