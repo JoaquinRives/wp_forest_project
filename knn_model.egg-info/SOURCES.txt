@@ -1,5 +1,0 @@
-README.md
-knn_model.egg-info/PKG-INFO
-knn_model.egg-info/SOURCES.txt
-knn_model.egg-info/dependency_links.txt
-knn_model.egg-info/top_level.txt
