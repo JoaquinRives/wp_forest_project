@@ -19,7 +19,7 @@ steps:
 - script: |
     python -m pip install --upgrade pip
     pip install -r packages/wp_knn_model/requirements.txt
-  displayName: 'Install requirements wp_knn_n_model'
+  displayName: 'Install requirements wp_knn_model'
 
 - script: |
     python packages/wp_knn_model/setup.py sdist bdist_wheel
@@ -47,7 +47,7 @@ steps:
   displayName: 'Capture model predictions'
 
 - script:
-    cp -r ./packages/wp_knn_model/dist $(Build.ArtifactStagingDirectory)
+    cp -r ./dist $(Build.ArtifactStagingDirectory)
   displayName: 'Copy wp_knn_model dist to the ArtifactStagingDirectory'
 
 - task: PublishBuildArtifacts@1  
