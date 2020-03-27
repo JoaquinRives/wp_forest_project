@@ -1,8 +1,8 @@
 # Water Permeability Forest Project (Continuous Integration YML)
 
 trigger:
-- master
-
+  - master
+  
 pool:
   vmImage: 'ubuntu-latest'
 strategy:
@@ -10,55 +10,48 @@ strategy:
     Python37:
       python.version: '3.7'
 
-stages: 
-  - stage: Build and publish
-    jobs:
-      - job: First
-        steps:
-        - task: UsePythonVersion@0
-          inputs:
-            versionSpec: '$(python.version)'
-          displayName: 'Use Python $(python.version)'
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '$(python.version)'
+  displayName: 'Use Python $(python.version)'
 
-        - script: |
-            python -m pip install --upgrade pip
-            pip install -r packages/wp_knn_model/requirements.txt
-          displayName: 'Install requirements wp_knn_model'
+- script: |
+    python -m pip install --upgrade pip
+    pip install -r packages/wp_knn_model/requirements.txt
+  displayName: 'Install requirements wp_knn_model'
 
-        - script: |
-            python packages/wp_knn_model/setup.py sdist bdist_wheel
-          displayName: 'Build package'
+- script: |
+    python packages/wp_knn_model/setup.py sdist bdist_wheel
+  displayName: 'Build package'
 
-        - script: |
-            pip install -r requirements.txt
-          displayName: 'Install package'
+- script: |
+    pip install -r requirements.txt
+  displayName: 'Install package'
 
-        - script: |
-            python packages/wp_knn_model/knn_model/train_pipeline.py
-          displayName: 'Train the model'
+- script: |
+    python packages/wp_knn_model/knn_model/train_pipeline.py
+  displayName: 'Train the model'
 
-        - script: |
-            pip install pytest pytest-azurepipelines
-            pytest packages/wp_knn_model/tests
-          displayName: 'Run tests knn_model'
+- script: |
+    pip install pytest pytest-azurepipelines
+    pytest packages/wp_knn_model/tests
+  displayName: 'Run tests knn_model'
 
-        - script: |
-            pytest packages/wp_knn_model/tests
-          displayName: 'Run tests api'
+- script: |
+    pytest packages/wp_knn_model/tests
+  displayName: 'Run tests api'
 
-        - script: |
-            python packages/ml_api/tests/capture_model_predictions.py
-          displayName: 'Capture model predictions'
+- script: |
+    python packages/ml_api/tests/capture_model_predictions.py
+  displayName: 'Capture model predictions'
 
-        - script:
-            cp -r ./dist $(Build.ArtifactStagingDirectory)
-          displayName: 'Copy wp_knn_model dist to the ArtifactStagingDirectory'
+- script:
+    cp -r ./dist $(Build.ArtifactStagingDirectory)
+  displayName: 'Copy wp_knn_model dist to the ArtifactStagingDirectory'
 
-        - task: PublishBuildArtifacts@1  
-          inputs:    
-            PathtoPublish: '$(Build.ArtifactStagingDirectory)'                  
-            ArtifactName: 'wp_knn_model'    
-            publishLocation: 'Container'
-
-  - stage: Differential tests
-      
+- task: PublishBuildArtifacts@1  
+  inputs:    
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'                  
+    ArtifactName: 'wp_knn_model'    
+    publishLocation: 'Container'
