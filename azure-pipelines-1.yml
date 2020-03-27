@@ -64,36 +64,36 @@ stages:
             pytest packages/wp_knn_model/tests
           displayName: 'Run tests api'
 
-        - script: |
-            python packages/ml_api/tests/capture_model_predictions.py
-          displayName: 'Capture model predictions'
+  #       - script: |
+  #           python packages/ml_api/tests/capture_model_predictions.py
+  #         displayName: 'Capture model predictions'
 
-        - script:
-            cp -r ./dist $(Build.ArtifactStagingDirectory)
-          displayName: 'Copy wp_knn_model dist to the ArtifactStagingDirectory'
+  #       - script:
+  #           cp -r ./dist $(Build.ArtifactStagingDirectory)
+  #         displayName: 'Copy wp_knn_model dist to the ArtifactStagingDirectory'
 
-        - task: PublishBuildArtifacts@1  
-          inputs:    
-            PathtoPublish: '$(Build.ArtifactStagingDirectory)'                  
-            ArtifactName: 'wp_knn_model'    
-            publishLocation: 'Container'
+  #       - task: PublishBuildArtifacts@1  
+  #         inputs:    
+  #           PathtoPublish: '$(Build.ArtifactStagingDirectory)'                  
+  #           ArtifactName: 'wp_knn_model'    
+  #           publishLocation: 'Container'
 
 
-  - stage: Build
-    displayName: Build and push docker image
-    dependsOn: package
-    jobs:  
-    - job: Build
-      displayName: Build
-      pool:
-        vmImage: $(vmImageName)
-      steps:
-      - task: Docker@2
-        displayName: Build and push an image to container registry
-        inputs:
-          command: buildAndPush
-          repository: $(imageRepository)
-          dockerfile: $(dockerfilePath)
-          containerRegistry: $(dockerRegistryServiceConnection)
-          tags: |
-            $(tag)
+  # - stage: Build
+  #   displayName: Build and push docker image
+  #   dependsOn: package
+  #   jobs:  
+  #   - job: Build
+  #     displayName: Build
+  #     pool:
+  #       vmImage: $(vmImageName)
+  #     steps:
+  #     - task: Docker@2
+  #       displayName: Build and push an image to container registry
+  #       inputs:
+  #         command: buildAndPush
+  #         repository: $(imageRepository)
+  #         dockerfile: $(dockerfilePath)
+  #         containerRegistry: $(dockerRegistryServiceConnection)
+  #         tags: |
+  #           $(tag)
