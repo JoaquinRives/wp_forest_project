@@ -18,6 +18,10 @@ variables:
   
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
+  strategy:
+  matrix:
+    Python37:
+      python.version: '3.7'
 
 stages:
 
