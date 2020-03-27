@@ -12,4 +12,4 @@ WORKDIR /app
 ## Do not edit if you have a requirements.txt
 RUN pip install -r requirements.txt
 RUN pip install -r packages/wp_knn_model/requirements.txt
-RUN python packages/ml_api/run.py
+# RUN python packages/ml_api/run.py
