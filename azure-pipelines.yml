@@ -1,8 +1,9 @@
-# Water Permeability Forest Project (Continuous Integration YML)
+# # Water Permeability Forest Project (Continuous Integration YML)
 
-trigger:
-  - master
+# trigger:
+#   - master
   
+
 pool:
   vmImage: 'ubuntu-latest'
 strategy:
@@ -15,6 +16,7 @@ steps:
   inputs:
     versionSpec: '$(python.version)'
   displayName: 'Use Python $(python.version)'
+
 
 # - script: |
 #     python -m pip install --upgrade pip
