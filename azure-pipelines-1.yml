@@ -3,7 +3,11 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 trigger:
-- master
+  - master
+  
+
+
+
 
 resources:
 - repo: self
@@ -15,11 +19,11 @@ variables:
   containerRegistry: 'wpforest.azurecr.io'
   dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildId)'
+  python.version: '3.7'
+
+# Agent VM image name
+  vmImageName: 'ubuntu-latest'      
   
-  # Agent VM image name
-  vmImageName: 'ubuntu-latest'
-  Python37:
-    python.version: '3.7'
 
 stages:
 
