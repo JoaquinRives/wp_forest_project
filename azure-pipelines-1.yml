@@ -1,0 +1,96 @@
+# Docker
+# Build and push an image to Azure Container Registry
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- master
+
+resources:
+- repo: self
+
+variables:
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: '67b10c8e-063f-4c9b-9e22-67f54a0f2d17'
+  imageRepository: 'wpforestimg'
+  containerRegistry: 'wpforest.azurecr.io'
+  dockerfilePath: '**/Dockerfile'
+  tag: '$(Build.BuildId)'
+  
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+
+stages:
+
+  - stage: package
+  
+    displayName: Build and test package
+    jobs:
+      - job: first
+        steps:
+        - task: UsePythonVersion@0
+          inputs:
+            versionSpec: '$(python.version)'
+          displayName: 'Use Python $(python.version)'
+
+        - script: |
+            python -m pip install --upgrade pip
+            pip install -r packages/wp_knn_model/requirements.txt
+          displayName: 'Install requirements wp_knn_n_model'
+
+        - script: |
+            python packages/wp_knn_model/setup.py sdist bdist_wheel
+          displayName: 'Build package '
+
+        - script: |
+            pip install -r requirements.txt
+          displayName: 'Install package'
+
+        - script: |
+            python packages/wp_knn_model/knn_model/train_pipeline.py
+          displayName: 'Train the model'
+
+        - script: |
+            pip install pytest pytest-azurepipelines
+            pytest packages/wp_knn_model/tests
+          displayName: 'Run tests knn_model'
+
+        - script: |
+            pytest packages/wp_knn_model/tests
+          displayName: 'Run tests api'
+
+        - script: |
+            python packages/ml_api/tests/capture_model_predictions.py
+          displayName: 'Capture model predictions'
+
+        - script: |
+            ls ./packages/wp_knn_model
+          displayName: 'Capture model predictions'
+
+        - script:
+            cp -r ./packages/wp_knn_model/dist $(Build.ArtifactStagingDirectory)
+          displayName: 'Copy dist to the ArtifactStagingDirectory'
+        - task: PublishBuildArtifacts@1  
+          inputs:    
+            PathtoPublish: '$(Build.ArtifactStagingDirectory)'                  
+            ArtifactName: 'dist'    
+            publishLocation: 'Container'
+
+
+  - stage: Build
+    displayName: Build and push docker image
+    dependsOn: package
+    jobs:  
+    - job: Build
+      displayName: Build
+      pool:
+        vmImage: $(vmImageName)
+      steps:
+      - task: Docker@2
+        displayName: Build and push an image to container registry
+        inputs:
+          command: buildAndPush
+          repository: $(imageRepository)
+          dockerfile: $(dockerfilePath)
+          containerRegistry: $(dockerRegistryServiceConnection)
+          tags: |
+            $(tag)
